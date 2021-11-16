@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>National Parks Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<!-- Please read my README file for more details regarding the development of this project.
+Thank you so much for the opportunity to begin learning web development and how to use APIs.
+~Ryan Sanchez -->
+<body>
+    <h1>National Parks Explorer</h1>
+    <h2>Get out there and explore.</h2>
+    <br><br>
+    <form>
+        <label for="activityDropdown">Select an activity from the dropdown menu to begin</label>
+        <select id="activityDropdown" onchange="parksExplorer(this)">
+            <option value="">Choose an Activity</option>
+            <option value="Arts and Culture">Arts and Culture</option>
+            <option value="Astronomy">Astronomy</option>
+            <option value="Auto and ATV">Auto and ATV</option>
+            <option value="Biking">Biking</option>
+            <option value="Boating">Boating</option>
+            <option value="Camping">Camping</option>
+            <option value="Canyoneering">Canyoneering</option>
+            <option value="Carving">Carving</option>
+            <option value="Climbing">Climbing</option>
+            <option value="Compass and GPS">Compass and GPS</option>
+            <option value="Dog Sledding">Dog Sledding</option>
+            <option value="Fishing">Fishing</option>
+            <option value="Flying">Flying</option>
+            <option value="Food">Food</option>
+            <option value="Golfing">Golfing</option>
+            <option value="Guided Tours">Guided Tours</option>
+            <option value="Hands-On">Hands-On</option>
+            <option value="Horse Trekking">Horse Trekking</option>
+            <option value="Hunting and Gathering">Hunting and Gathering</option>
+            <option value="Ice Skating">Ice Skating</option>
+            <option value="Junior Ranger Program">Junior Ranger Program</option>
+            <option value="Living History">Living History</option>
+            <option value="Museum Exhibits">Museum Exhibits</option>
+            <option value="Paddling">Paddling</option>
+            <option value="Park Film">Park Film</option>
+            <option value="Playground">Playground</option>
+            <option value="SCUBA Diving">SCUBA Diving</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Skiing">Skiing</option>
+            <option value="Snorkeling">Snow Play</option>
+            <option value="Snowmobiling">Snowmobiling</option>
+            <option value="Snowshoeing">Snowshoeing</option>
+            <option value="Surfing">Surfing</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Team Sports">Team Sports</option>
+            <option value="Tubing">Tubing</option>
+            <option value="Water Skiing">Water Skiing</option>
+            <option value="Wildlife Watching">Wildlife Watching</option>
+        </select>
+        <!--<button id="activityBtn" onclick="parksExplorer()">Explore Parks!</button>-->
+    </form>
+
+    <h3>Parks with your chosen activity:</h3>
+    <div id="filteredParks"></div>
+
+    <script>
+        function parksExplorer() {
+            let activityDropdown = document.getElementById("activityDropdown");
+            const exploreKey = activityDropdown.options[activityDropdown.selectedIndex].innerHTML;
+            console.log(exploreKey)
+
+            const url = 'https://developer.nps.gov/api/v1/activities/parks?q=' + exploreKey + '&limit=500&api_key=8Vsxyybug2b80Mve8GmF5u0IY4jPTpV2j36fJyUn'
+
+            fetch(url)
+                .then(response => {
+                    return response.json();
+                }).then(data => {
+                const html = data.data[0].parks
+                    .map(ntlPark => {
+                        return `<div class="returns"><p>${ntlPark.fullName}</p>(<a href="${ntlPark.url}">Learn More</a></div>`;
+                    })
+                    .join("")
+                console.log(html)
+                document.querySelector("#filteredParks").insertAdjacentHTML('afterbegin', html);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+</html>

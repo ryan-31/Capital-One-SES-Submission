@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+html {
+    min-height: 100%;
+    background-image: url("images/home.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+h1 {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 6vw;
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    color: black;
+    font-family: "Roboto Thin", sans-serif;
+    font-weight: lighter;
+    font-size: 3vw;
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+}
+p {
+    font-family: 'Roboto', sans-serif;
+    align-content: center;
+}
+
+form {
+    font-family: 'Roboto', sans-serif;
+}
+
+.returns {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(255,255,255,0.5);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Fix, for some reason this has no effect on the dropdown label or location of everything */
+.activityDropdown label{
+    padding-left: 50px;
+    text-align: center;
+    font-size: 2vw;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    align-content: center;
+
+}
