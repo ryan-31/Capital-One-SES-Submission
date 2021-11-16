@@ -75,7 +75,7 @@ Thank you so much for the opportunity to begin learning web development and how 
                 }).then(data => {
                 const html = data.data[0].parks
                     .map(ntlPark => {
-                        return `<div class="returns"><p>${ntlPark.fullName}</p>(<a href="${ntlPark.url}">Learn More</a></div>`;
+                        return `<div class="returns"><p>${ntlPark.fullName}</p><a href="${ntlPark.url}">Learn More</a></div>`;
                     })
                     .join("")
                 console.log(html)
